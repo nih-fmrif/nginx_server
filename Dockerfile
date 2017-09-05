@@ -1,13 +1,14 @@
 FROM nginx:alpine
 
-ENV HTPASSWD='foo:$apr1$odHl5EJN$KbxMfo86Qdve2FH4owePn.'
-
-WORKDIR /opt
-
 RUN apk add --no-cache gettext
 RUN mkdir -p /data /var/log/nginx /opt/settings
 
+RUN rm /etc/nginx/conf.d/default.conf
+
+WORKDIR /opt
+COPY ./settings/auth.conf /etc/nginx/conf.d/auth.conf
+COPY ./settings/auth.htpasswd /etc/nginx
+COPY ./settings/nginx.conf /etc/nginx/nginx.conf
+
 COPY launch.sh ./
-#COPY ./settings/auth.conf /opt/settings
-#COPY ./settings/auth.htpasswd /opt/settings
-CMD ["./launch.sh"]
+ENTRYPOINT ["/opt/launch.sh"]
