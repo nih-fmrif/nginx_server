@@ -1,8 +1,11 @@
-# To build the container execute the following command from this directory:
-docker build -t mynginx .
+# To build the container execute the following command from a clone of this repo:
+
+	docker build -t mynginx .
 
 # To use the container
-docker run -v $PWD/log:/var/log/nginx -v /home/dsst/nndsp_mriqc_server/mriqc/reports:/data -v settings:/opt/settings -p 3002:3002  --rm -it  mynginx
+Change the absolute path for the data directory as required: 
+
+	docker run -v $PWD/log:/var/log/nginx -v /home/dsst/nndsp_mriqc_server/mriqc/reports:/data -v settings:/opt/settings -p 3002:3002  --rm -it  mynginx
 
 # To make a new password:
 
