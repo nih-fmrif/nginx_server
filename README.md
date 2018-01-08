@@ -30,8 +30,16 @@ The following might be helpful:
 # Original repo:
 `https://hub.docker.com/r/beevelop/nginx-basic-auth`
 
+# Example for use with singularity:
 
+One can use the docker2singularity image to convert the nginx image to a singularity image and add some directories as bind points for [mounting host OS directories](http://singularity.lbl.gov/docs-mount) later:
 
+	docker run -v /var/run/docker.sock:/var/run/docker.sock -v ~:/output --privileged -t --rm singularityware/docker2singularity -m "/gpfs /gs2 /gs3 /gs4 /gs5 /gs6 /gs7 /gs8 /spin1 /data /scratch /fdb /lscratch" mynginx
+
+The following works for running the image (insert appropriate singularity image path)_:
+
+	mkdir log temp_for_nginx
+	singularity run -B log:/var/log/nginx -B temp_for_nginx/:/var/cache/nginx sing_image.img
 
 # some caveats
 Data needs to be readable from the Docker image.
