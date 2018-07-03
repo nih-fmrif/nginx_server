@@ -1,7 +1,7 @@
 FROM nginx:alpine
 
 RUN apk add --no-cache gettext
-RUN mkdir -p /data /var/log/nginx /opt/settings /my_data
+RUN mkdir -p /data /var/log/nginx /opt/settings /my_data /startup_data
 
 RUN rm /etc/nginx/conf.d/default.conf
 
