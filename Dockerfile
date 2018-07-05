@@ -6,7 +6,7 @@ RUN mkdir -p /data /var/log/nginx /opt/settings /my_data /startup_data
 RUN rm /etc/nginx/conf.d/default.conf
 
 WORKDIR /opt
-COPY ./settings/auth.conf /etc/nginx/conf.d/auth.conf
+COPY ./settings/meteor.conf /etc/nginx/conf.d/meteor.conf
 COPY ./settings/auth.htpasswd /etc/nginx
 RUN chown nginx:nginx /etc/nginx/auth.htpasswd
 COPY ./settings/nginx.conf /etc/nginx/nginx.conf
